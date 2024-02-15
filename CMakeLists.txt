@@ -3,4 +3,7 @@ project(LabDPSA)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LabDPSA main.cpp)
+add_executable(LabDPSA main.cpp
+        dataio.h
+        task7.cpp
+        task7.h)
