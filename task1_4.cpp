@@ -15,6 +15,7 @@ struct Stack {
 };
 
 Stack* stack, * trash;
+
 inline void init() {
     stack = nullptr;
     trash = nullptr;
@@ -134,14 +135,16 @@ bool dialog() {
         case 3:
             while(del_dialog());
             break;
-        case 4:
+        case 4:{
             showStack(stack);
+        	showStack(trash);
             break;
+            }
         case 5: {
             cout << "Введите кол-во: ";
             unsigned iter = read_uint();
             srand(time(0));
-            for(int i = 0;i<=iter;i++) {
+            for(int i = 0;i<iter;i++) {
                 stack = push(rand(),stack);
             }
             return  true;

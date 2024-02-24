@@ -9,7 +9,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-const int queue_size = 10;
+const int queue_size = 4;
 
 struct Queue {
     int front, last;

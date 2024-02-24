@@ -58,7 +58,17 @@ int read_int() {
             data = "";
             getline(cin,data);
         }else{
-            return stoi(buf);
+            try {
+                return stoi(buf);
+            }catch (std::invalid_argument iaex) {
+                cout << "Error!" << endl;
+                buf = "";
+                iter = 1;
+                err = false;
+                space = false;
+                data = "";
+                getline(cin,data);
+            }
         }
     }
 }
@@ -69,6 +79,12 @@ unsigned read_uint() {
         i = read_int();
     }
     return i;
+}
+
+string read_line() {
+    string enter;
+    getline(cin,enter);
+    return enter;
 }
 
 #endif //DATAIO_H
