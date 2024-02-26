@@ -12,7 +12,7 @@ using std::endl;
 const int array_size = 10;
 
 struct List {
-    string data1;
+    string data;
 };
 
 List list[10];
@@ -20,7 +20,7 @@ int count;
 
 void init() {
     for(int i = 0;i<count;i++) {
-        list[i].data1 ="";
+        list[i].data ="";
     }
     count = 0;
 }
@@ -31,21 +31,21 @@ bool isFull() {
     return count == array_size;
 }
 
-void add(int index,string data1) {
+void add(int index,string str) {
     if(isFull()) {
         cout<< "Масив заполнен." << endl;
         return;
     }
-    if(data1 != "") {
-        if(list[index].data1 == "") {
-            list[index].data1 = data1;
+    if(str != "") {
+        if(list[index].data == "") {
+            list[index].data = str;
         }else {
             int i = array_size - 1;
             do{
                 list[i] = list[i - 1];
                 i--;
             }while(i!=index);
-            list[index].data1 = data1;
+            list[index].data = str;
             count++;
         }
     }
@@ -63,7 +63,7 @@ void delite(int index) {
         i++;
     }
 
-    list[array_size-1].data1 = "";
+    list[array_size-1].data = "";
     count--;
 }
 
@@ -77,11 +77,11 @@ void sort_add(string data) {
         return;
     }
     for(int i = 0;i < array_size;i++) {
-        if(list[i].data1=="") {
+        if(list[i].data=="") {
             add(i,data);
             return;
         }
-        if(data<list[i].data1) {
+        if(data<list[i].data) {
             add(i,data);
             return;
         }
@@ -91,14 +91,14 @@ void sort_add(string data) {
 
 void showArr() {
     for(int i = 0; i < array_size;i++) {
-        cout << i << " - " << list[i].data1<<endl;
+        cout << i << " - " << list[i].data<<endl;
     }
 
 }
 
 int findIndex(string data){
     for(int i = 0;i < count;i++) {
-        if(list[i].data1 == data) {
+        if(list[i].data == data) {
             return i;
         }
     }

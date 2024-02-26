@@ -88,10 +88,10 @@
 		<Unit filename="C:/Users/zaiga/CLionProjects/LabDPSA/main.cpp">
 			<Option target="LabDPSA"/>
 		</Unit>
-		<Unit filename="C:/Users/zaiga/CLionProjects/LabDPSA/task7.cpp">
+		<Unit filename="C:/Users/zaiga/CLionProjects/LabDPSA/task1_7.cpp">
 			<Option target="LabDPSA"/>
 		</Unit>
-		<Unit filename="C:/Users/zaiga/CLionProjects/LabDPSA/task7.h">
+		<Unit filename="C:/Users/zaiga/CLionProjects/LabDPSA/task1_7.h">
 			<Option target="LabDPSA"/>
 		</Unit>
 		<Unit filename="C:/Users/zaiga/CLionProjects/LabDPSA/CMakeLists.txt">

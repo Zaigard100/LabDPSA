@@ -1,3 +1,3 @@
-C:/Users/zaiga/IdeaProjects/LabDPSA/cmake-build-debug/CMakeFiles/LabDPSA.dir
-C:/Users/zaiga/IdeaProjects/LabDPSA/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/zaiga/IdeaProjects/LabDPSA/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/zaiga/CLionProjects/LabDPSA/cmake-build-debug/CMakeFiles/LabDPSA.dir
+C:/Users/zaiga/CLionProjects/LabDPSA/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/zaiga/CLionProjects/LabDPSA/cmake-build-debug/CMakeFiles/rebuild_cache.dir

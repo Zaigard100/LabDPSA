@@ -23,30 +23,16 @@ void init() {
 }
 
 bool isEmpty() {
-    if (front->next == nullptr) return true;
-    return false;
+    return front->next == nullptr;
 }
 
 void add(char _value) {
-    QueueElement* temp = new(std::nothrow) QueueElement;
-    if (temp != nullptr)
-    {
-        temp->value = _value;
-        temp->next = nullptr;
-        if (isEmpty()) {
-            front->next = temp;
-        }
-        else {
-            last->next = temp;
-        }
-        last = temp;
-        cout << "В очередь встала буква " << last->value << ";" << endl;
-    }
-    else {
-        cout << "Нехватка оперативной памяти" <<
-            "завершение работы программы" << endl;
-        exit(0);
-    }
+    QueueElement* temp = new QueueElement;
+    temp->value = _value;
+    temp->next = nullptr;
+    last->next = temp;
+    last = temp;
+    cout << "В очередь встала буква " << last->value << ";" << endl;
 }
 
 void delite() {
@@ -54,7 +40,9 @@ void delite() {
         char deletedValue;
         QueueElement* temp = front->next;
         front->next = temp->next;
-        if (isEmpty()) { last = front; }
+        if (isEmpty()) {
+            last = front;
+        }
         deletedValue = temp->value;
         delete temp;
         cout << "Из очереди ушла буква " << deletedValue << ";" << endl;
@@ -86,7 +74,7 @@ void start() {
         int count ;
 
         if ((((1 + rand()) % 100) % 2) == 0) {
-            count = 1 + rand() % 3; // кол-во входящих
+            count = 1 + rand() % 6; // кол-во входящих
             cout << "Кол-во входящих символов: " << count << endl;
 
             for (int i = 0; i < count; i++)
@@ -101,9 +89,9 @@ void start() {
                 if (isEmpty()) {
                     cout << "Очередь пуста. Остановка." << endl;
                     break;
-                }else{
-                    delite();
                 }
+                delite();
+
         }
         showQueue();
         counter++;
@@ -125,7 +113,7 @@ void start() {
     }
 }
 
-void task7() {
+void task1_7() {
     SetConsoleOutputCP(CP_UTF8);
     srand(static_cast<unsigned int>(time(0)));
     init();
