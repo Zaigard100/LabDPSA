@@ -61,7 +61,7 @@ void add(string findData, string data) {
     }
     int empty = -1,find = findIndex(findData);
     for(int i = 1;i<arr_size+1;i++) {
-        if(list[i].next = -1) {
+        if(list[i].next == -1) {
             empty = i;
             break;
         }
