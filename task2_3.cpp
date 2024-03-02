@@ -35,18 +35,26 @@ bool isEmpty() {
     return count == 0;
 }
 
-int findIndex(string data){
+int findIndex(string data,bool prev){
     if(isEmpty()) return -1;
-    for(int i = 0;i < count;i++) {
-        if(list[i].data == data) {
-            return i;
+    if(prev) {
+        for (int i = 0; i < count; i++) {
+            if (list[list[i].next].data == data) {
+                return i;
+            }
+        }
+    }else{
+        for (int i = 0; i < count; i++) {
+            if (list[i].data == data) {
+                return i;
+            }
         }
     }
     cout << "Не найдено." << endl;
     return -1;
 }
 
-void add(string findData, string data) {
+void add(string findData, string data,bool prev) {
     if(isFull()) {
         cout << "Масив полон." << endl;
         return;
@@ -58,16 +66,10 @@ void add(string findData, string data) {
         count++;
         return;
     }
-    int empty = -1,find = findIndex(findData);
+    int empty = -1,find = findIndex(findData,prev);
     for(int i = 1;i<arr_size+1;i++) {
         if(list[i].next == -1) {
             empty = i;
-            break;
-        }
-    }
-    for(int i = 1;i<arr_size+1;i++) {
-        if(list[i].data == findData) {
-            find = i;
             break;
         }
     }
@@ -133,13 +135,31 @@ bool dialog() {
         case 1: {
             if(isEmpty()) {
                 cout << "Введите данные:" << endl;
-                add("header?",read_line());
+                add("header?",read_line(),false);
                 return  true;
             }
-            cout << "Введите элемен после которого хотите добавить данные:" << endl;
+            cout << "Введите элемен:" << endl;
             string find = read_line();
             cout << "Введите данные:" << endl;
-            add(find,read_line());
+            cout << "\n1.Перед." << endl;
+            cout << "2.После" << endl;
+            bool run = true;
+            while (run){
+                switch (read_uint()) {
+                    case 1: {
+                        add(find, read_line(), true);
+                        run = false;
+                        break;
+                    }
+                    case 2: {
+                        add(find, read_line(), false);
+                        run = false;
+                        break;
+                    }
+
+                }
+            }
+
             return true;
         }
         case 2: {
@@ -153,7 +173,7 @@ bool dialog() {
         }
         case 4: {
             cout << "Введите данные:" << endl;
-            int f = findIndex(read_line());
+            int f = findIndex(read_line(), false);
             if(f!=-1) {
                 cout << f <<endl;
             }

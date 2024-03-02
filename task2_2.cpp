@@ -34,6 +34,7 @@ bool isFull() {
 void add(int index,string str) {
     if(isFull()) {
         cout<< "Масив заполнен." << endl;
+        count++;
         return;
     }
     if(str != "") {
