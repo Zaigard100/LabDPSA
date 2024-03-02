@@ -40,12 +40,13 @@ void add(int index,string str) {
     if(str != "") {
         if(list[index].data == "") {
             list[index].data = str;
+            count++;
         }else {
             int i = array_size - 1;
-            do{
+            while(i!=index){
                 list[i] = list[i - 1];
                 i--;
-            }while(i!=index);
+            }
             list[index].data = str;
             count++;
         }
@@ -59,11 +60,11 @@ void delite(int index) {
     }
 
     int i = index;
-    while(i>array_size-1) {
+    while(i<array_size-1) {
         list[i]=list[i+1];
         i++;
     }
-
+    cout << "удаляем"<< index << endl;
     list[array_size-1].data = "";
     count--;
 }
@@ -118,12 +119,20 @@ bool dialog() {
 
     switch (read_uint()) {
         case 1: {
+            if(isFull()) {
+                cout<< "Масив заполнен." << endl;
+                return true;
+            }
             sort_add(read_line());
             return true;
         }
         case 2: {
-            cout << "Введите номер удаляемого элемента: ";
-            delite(read_uint());
+            if(isEmpty()) {
+                cout << "Масив пустой." << endl;
+                return true;
+            }
+            cout << "Введите удаляемый элемент: ";
+            delite(findIndex(read_line()));
             return true;
         }
         case 3: {

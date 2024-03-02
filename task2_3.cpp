@@ -36,7 +36,7 @@ bool isEmpty() {
 }
 
 int findIndex(string data,bool prev){
-    if(isEmpty()) return -1;
+    //if(isEmpty()) return -1;
     if(prev) {
         for (int i = 0; i < count; i++) {
             if (list[list[i].next].data == data) {
@@ -138,20 +138,22 @@ bool dialog() {
                 add("header?",read_line(),false);
                 return  true;
             }
-            cout << "Введите элемен:" << endl;
+            cout << "Введите элемент:" << endl;
             string find = read_line();
-            cout << "Введите данные:" << endl;
             cout << "\n1.Перед." << endl;
             cout << "2.После" << endl;
+            cout << "Введите коману: ";
             bool run = true;
             while (run){
                 switch (read_uint()) {
                     case 1: {
+                        cout << "Введите данные:" << endl;
                         add(find, read_line(), true);
                         run = false;
                         break;
                     }
                     case 2: {
+                        cout << "Введите данные:" << endl;
                         add(find, read_line(), false);
                         run = false;
                         break;

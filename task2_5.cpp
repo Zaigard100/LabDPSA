@@ -32,7 +32,7 @@ Element* findPrev(string find) {// возвращает ссылку на пре
         }
         f = f->next;
     }while (f->next!=nullptr);
-    return nullptr;
+    return f;
 }
 Element* findEl(string find) {// возвращает ссылку на ячейку с даннымим(find) если не находит возвращает null
     Element *f = first;
@@ -96,13 +96,22 @@ bool dialog() {
             }
             cout << "Введите элемен после которого хотите добавить данные:" << endl;
             string find = read_line();
+            while(!findEl(find)){
+                cout << "Элемент не найден" << endl;
+                find = read_line();
+            }
             cout << "Введите данные:" << endl;
             add(find,read_line());
             return true;
         }
         case 2: {
             cout << "Введите удаляемый элемента: ";
-            del(read_line());
+            string d = read_line();
+            while(!findEl(d)){
+                cout << "Элемент не найден" << endl;
+                d = read_line();
+            }
+            del(d);
             return true;
         }
         case 3: {
