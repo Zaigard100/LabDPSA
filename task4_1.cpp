@@ -14,22 +14,22 @@ struct List {
     List *prev;
 };
 
-List *list;
+List *head;
 
 void init(){
-    list = new List;
-    list->data = "";
-    list->next = list;
-    list->prev = list;
+    head = new List;
+    head->data = "";
+    head->next = head;
+    head->prev = head;
 }
 
-bool isEmpty(){ return list->next=list; }
+bool isEmpty(){ return head->next==head&&head->prev==head; }
 
 List *findEl(string find,bool prev){
     List *temp;
-    if(prev) temp = list->prev;
-    else temp = list->next;
-    while(temp!= list){
+    if(prev) temp = head->prev;
+    else temp = head->next;
+    while(temp != head){
         if(temp->data == find) return temp;
         if(prev) temp = temp->prev;
         else temp = temp->next;
@@ -39,7 +39,7 @@ List *findEl(string find,bool prev){
 
 void add(string find,string data,bool prev){
     List *f;
-    if(isEmpty()) f = list;
+    if(isEmpty()) f = head;
     else f = findEl(find,prev);
     if(prev) f = f->prev;
     List *temp = new List;
@@ -47,6 +47,7 @@ void add(string find,string data,bool prev){
     temp->prev = f;
     temp->next = f->next;
     f->next = temp;
+    temp->next->prev = temp;
 }
 void del(string find){
     List *f = findEl(find, false);
@@ -57,13 +58,13 @@ void del(string find){
 
 void show(bool prev){
     List *temp;
-    if(prev) temp = list->prev;
-    else temp = list->next;
-    while(temp!=list){
+    if(prev) temp = head->prev;
+    else temp = head->next;
+    do{
+        cout<<temp->data<<" - ";
         if(prev) temp = temp->prev;
         else temp = temp->next;
-        cout<<temp->data<<" - ";
-    }
+    }while(temp != head);
     cout<<endl;
 }
 
@@ -84,7 +85,7 @@ bool dialog(){
             }
             cout << "Введите элемен после/перед которого хотите добавить данные:" << endl;
             string find = read_line();
-            while(findEl(find, false)!= nullptr){
+            while(findEl(find, false)== nullptr){
                 cout << "Элемент не найден" << endl;
                 find = read_line();
             }
@@ -114,7 +115,7 @@ bool dialog(){
         case 2: {
             cout << "Введите удаляемый элемента: ";
             string d = read_line();
-            while(findEl(d, false)!= nullptr){
+            while(findEl(d, false)== nullptr){
                 cout << "Элемент не найден" << endl;
                 d = read_line();
             }
