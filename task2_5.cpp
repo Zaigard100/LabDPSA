@@ -15,11 +15,15 @@ struct Element {
 };
 
 Element *first;
+Element *trash;
 
 void init() {
     first = new Element;
     first->data = "";
     first-> next = nullptr;
+    trash = new Element;
+    trash->data = "";
+    trash-> next = nullptr;
 }
 bool isEmpty() {
     return first->next == nullptr;
@@ -45,14 +49,19 @@ Element* findEl(string find) {// возвращает ссылку на ячей
     return f;
 }
 
-void add(string find, string data) {
+void add(string find, string data,bool prev) {
     if(isEmpty()) {
         first->next = new Element;
         first->next->data = data;
         first->next->next = nullptr;
         return;
     }
-    Element *f = findEl(find);// находим нужный элемент
+    Element *f;
+    if(prev){
+        f = findPrev(find);// находим нужный элемент
+    }else {
+        f = findEl(find);// находим нужный элемент
+    }
     Element *nextEl = f->next; // сохраняем следуюющий
     f->next = new Element; // создаем новый элемент, который будет между ними
     f->next->next = nextEl; // следующийм элементом для нового элемента будет следующий найденного элемента
@@ -67,7 +76,12 @@ void del(string find) {
     Element *prev = findPrev(find);// находим предыдущий элемент
     Element *del = prev->next; // сохраняем удаляемый
     prev->next = del->next;
-    delete del;
+    del->next = nullptr;
+    Element* f = trash;
+    while(f->next!= nullptr){
+        f = f->next;
+    }
+    f->next = del;
 }
 void showList() {
     Element *f = first->next;
@@ -78,30 +92,58 @@ void showList() {
     }while (f!=nullptr);
     cout<<endl;
 }
-
+void showTrash() {
+    if(trash->next== nullptr)return;
+    Element *f = trash->next;
+    do {
+        cout << f->data;
+        if(f->next != nullptr) cout <<" - ";
+        f = f->next;
+    }while (f!=nullptr);
+    cout<<endl;
+}
 bool dialog() {
     cout << "\n1.Добавить элемент в список." << endl;
     cout << "2.Удалить опредённый элемент из списка." << endl;
     cout << "3.Вывести текущее состояние списка на экран." << endl;
     cout << "4.Найти элемента списка по его информационной части" << endl;
     cout << "9.Завершить работу программы." << endl;
-    cout << "Введите коману: ";
+    cout << "Введите команду: ";
 
     switch (read_uint()) {
         case 1: {
             if(isEmpty()) {
                 cout << "Введите данные:" << endl;
-                add("",read_line());
+                add("",read_line(),false);
                 return  true;
             }
-            cout << "Введите элемен после которого хотите добавить данные:" << endl;
+            cout << "Введите элемен после/перед которого хотите добавить данные:" << endl;
             string find = read_line();
             while(!findEl(find)){
                 cout << "Элемент не найден" << endl;
                 find = read_line();
             }
-            cout << "Введите данные:" << endl;
-            add(find,read_line());
+            cout << "\n1.Перед." << endl;
+            cout << "2.После" << endl;
+            cout << "Введите команду: ";
+            bool run = true;
+            while (run){
+                switch (read_uint()) {
+                    case 1: {
+                        cout << "Введите данные:" << endl;
+                        add(find, read_line(), true);
+                        run = false;
+                        break;
+                    }
+                    case 2: {
+                        cout << "Введите данные:" << endl;
+                        add(find, read_line(), false);
+                        run = false;
+                        break;
+                    }
+
+                }
+            }
             return true;
         }
         case 2: {
@@ -115,7 +157,11 @@ bool dialog() {
             return true;
         }
         case 3: {
+            cout << "Лист:" << endl;
             showList();
+
+            cout << "Корзина:" << endl;
+            showTrash();
             return true;
         }
         case 4: {

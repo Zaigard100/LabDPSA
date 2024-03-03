@@ -38,13 +38,16 @@ bool isEmpty() {
 int findIndex(string data,bool prev){
     //if(isEmpty()) return -1;
     if(prev) {
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < arr_size; i++) {
+            cout<<"-"<<data<<"="<<list[list[i].next].data<< endl;
             if (list[list[i].next].data == data) {
+
                 return i;
             }
         }
     }else{
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < arr_size; i++) {
+            cout<<"-"<<data<<"="<<list[i].data<< endl;
             if (list[i].data == data) {
                 return i;
             }
@@ -73,8 +76,10 @@ void add(string findData, string data,bool prev) {
             break;
         }
     }
+    cout<< find<<endl;
     if(find == -1) {
             cout << "Данные не существует."<<endl;
+        cout << findData<<" "<<data<<" "<<prev<<" "<< count <<endl;
     }else {
         list[empty].data = data;
         list[empty].next = list[find].next;
