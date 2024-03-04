@@ -1,7 +1,4 @@
 # ninja log v5
-4	2185	7310755149385438	CMakeFiles/LabDPSA.dir/task2_5.cpp.obj	eedff927d11ae3f7
 4	91	7310742871687574	CMakeFiles/LabDPSA.dir/main.cpp.obj	ca86044ece6196d8
 2186	2344	7310755150931760	LabDPSA.exe	c3390128178c1da4
-4	1955	7310681057413523	CMakeFiles/LabDPSA.dir/task2_2.cpp.obj	92eff926fb63ec0f
-0	239	7311591209736609	build.ninja	6e8fb7fee1b06b20
-4	1775	7310742403819907	CMakeFiles/LabDPSA.dir/task2_3.cpp.obj	b7bfee3538d2954c
+0	239	7312870322708466	build.ninja	6e8fb7fee1b06b20
