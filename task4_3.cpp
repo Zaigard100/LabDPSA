@@ -128,7 +128,8 @@ void deleteEl(string el,string name){
     if(f->next != nullptr)f->next->prev = f->prev;
     delete f;
 }
-void deliteList(string name){
+
+void deleteList(string name){
     if(isListOfListEmpty()){
         cout << "Лист листов пуст"<<endl;
         return;
@@ -195,5 +196,195 @@ void showList(List* l){
 }
 
 void showAllList(){
+    if(isListOfListEmpty()){
+        cout << "Лист листов пуст"<<endl;
+        return;
+    }
+    subList *l = listOfList->next;
+    while(l!= nullptr){
+        cout<<"|"<<endl;
+        showList(l->list);
+        l = l->next;
+    }
+}
 
+bool dialog() {
+    cout << "\n1.Создать лист." << endl;
+    cout << "2.Создать элемент в листе." << endl;
+    cout << "3.Удалить элемент в листе." << endl;
+    cout << "4.Удалить лист" << endl;
+    cout << "5.Найти элемент списка по всей структуре" << endl;
+    cout << "6.Найти элемент списка в определенном листе" << endl;
+    cout << "7.Показать всю структуру" << endl;
+    cout << "8.Показать лист" << endl;
+    cout << "9.Завершить работу программы." << endl;
+    cout << "Введите команду: ";
+
+    switch (read_uint()) {
+        case 1: {
+            cout << "Введите название списка:" << endl;
+            string name = read_line();
+            if (isListOfListEmpty()) {
+                addList(name, "", false);
+            } else {
+                cout << "Введите название листа после/перед которого хотите добавить новый лист:" << endl;
+                string find = read_line();
+                cout << "\n1.Перед." << endl;
+                cout << "2.После" << endl;
+                cout << "Введите команду: ";
+                bool run = true;
+                while (run) {
+                    switch (read_uint()) {
+                        case 1: {
+                            cout << "Введите данные:" << endl;
+                            addList(name, find, true);
+                            run = false;
+                            break;
+                        }
+                        case 2: {
+                            cout << "Введите данные:" << endl;
+                            addList(name, find, false);
+                            run = false;
+                            break;
+                        }
+
+                    }
+                }
+            }
+            return true;
+        }
+        case 2: {
+            if (isListOfListEmpty()) {
+                cout << "Лист листов пуст" << endl;
+                return true;
+            }
+            cout << "Введите название списка:" << endl;
+            string name = read_line();
+            subList *l = findList(name);
+            if (l == nullptr) {
+                cout << "Лист с таким именем не найден" << endl;
+                return true;
+            }
+            cout << "Введите элемент после/перед которого хотите добавить данные:" << endl;
+            string find = read_line();
+            List *el = findEl(find, l);
+            if (el == nullptr) {
+                cout << "Элемент с такими данными не найден" << endl;
+                return true;
+            }
+            cout << "Введите данные:" << endl;
+            string data = read_line();
+            if (isListEmpty(l->list)) {
+                add(data, find, name, true);
+                return true;
+            }
+            cout << "\n1.Перед." << endl;
+            cout << "2.После" << endl;
+            cout << "Введите команду: ";
+            bool run = true;
+            while (run) {
+                switch (read_uint()) {
+                    case 1: {
+                        add(data, find, name, true);
+                        run = false;
+                    }
+                    case 2: {
+                        add(data, find, name, true);
+                        run = false;
+                    }
+                }
+                return true;
+            }
+        }
+        case 3:{
+            if (isListOfListEmpty()) {
+                cout << "Лист листов пуст" << endl;
+                return true;
+            }
+            cout << "Введите название списка:" << endl;
+            string name = read_line();
+            subList *l = findList(name);
+            if (l == nullptr) {
+                cout << "Лист с таким именем не найден" << endl;
+                return true;
+            }
+            cout << "Введите удаляемый элемент:" << endl;
+            string find = read_line();
+            List *el = findEl(find, l);
+            if (el == nullptr) {
+                cout << "Элемент с такими данными не найден" << endl;
+                return true;
+            }
+            deleteEl(find,name);
+            return true;
+        }
+        case 4:{
+            if (isListOfListEmpty()) {
+                cout << "Лист листов пуст" << endl;
+                return true;
+            }
+            cout << "Введите название списка:" << endl;
+            string name = read_line();
+            subList *l = findList(name);
+            if (l == nullptr) {
+                cout << "Лист с таким именем не найден" << endl;
+                return true;
+            }
+            deleteList(name);
+            return true;
+        }
+        case 5:{
+            if (isListOfListEmpty()) {
+                cout << "Лист листов пуст" << endl;
+                return true;
+            }
+            cout << "Введите данные:" << endl;
+            string data = read_line();
+            findInAllList(data);
+        }
+        case 6:{
+            if (isListOfListEmpty()) {
+                cout << "Лист листов пуст" << endl;
+                return true;
+            }
+            cout << "Введите название списка:" << endl;
+            string name = read_line();
+            subList *l = findList(name);
+            if (l == nullptr) {
+                cout << "Лист с таким именем не найден" << endl;
+                return true;
+            }
+            cout << "Введите элемент которого хотите найти:" << endl;
+            string find = read_line();
+            List *el = findEl(find, l);
+            if (el != nullptr) {
+                cout << "Элемент с такими данными найден" << endl;
+            }else{
+                cout << "Элемент с такими данными не найден" << endl;
+            }
+            return true;
+        }
+        case 7:{
+            showAllList();
+            return true;
+        }
+        case 8:{
+            cout << "Введите название списка:" << endl;
+            string name = read_line();
+            subList *l = findList(name);
+            if (l == nullptr) {
+                cout << "Лист с таким именем не найден" << endl;
+                return true;
+            }
+            showList(l->list);
+            return true;
+        }
+        case 9:{
+            return false;
+        }
+        default:{
+            cout << "Вdедена не верная команда" << endl;
+            return true;
+        }
+    }
 }

@@ -152,29 +152,29 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-task4_1.obj: task4_1.cpp.obj
-.PHONY : task4_1.obj
+task4_3.obj: task4_3.cpp.obj
+.PHONY : task4_3.obj
 
 # target to build an object file
-task4_1.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_1.cpp.obj
-.PHONY : task4_1.cpp.obj
+task4_3.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_3.cpp.obj
+.PHONY : task4_3.cpp.obj
 
-task4_1.i: task4_1.cpp.i
-.PHONY : task4_1.i
+task4_3.i: task4_3.cpp.i
+.PHONY : task4_3.i
 
 # target to preprocess a source file
-task4_1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_1.cpp.i
-.PHONY : task4_1.cpp.i
+task4_3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_3.cpp.i
+.PHONY : task4_3.cpp.i
 
-task4_1.s: task4_1.cpp.s
-.PHONY : task4_1.s
+task4_3.s: task4_3.cpp.s
+.PHONY : task4_3.s
 
 # target to generate assembly for a file
-task4_1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_1.cpp.s
-.PHONY : task4_1.cpp.s
+task4_3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_3.cpp.s
+.PHONY : task4_3.cpp.s
 
 # Help Target
 help:
@@ -188,9 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... task4_1.obj
-	@echo ... task4_1.i
-	@echo ... task4_1.s
+	@echo ... task4_3.obj
+	@echo ... task4_3.i
+	@echo ... task4_3.s
 .PHONY : help
 
 
