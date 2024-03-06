@@ -13,24 +13,24 @@ struct Element {
     Element *next;
 };
 
-Element *first;
-Element *trash;
+Element* first;
+Element* trash;
 
-void init() {
+void init() {// создаем заголовоки списков котрый будет указывать на первый элемент
     first = new Element;
     first->data = "";
-    first-> next = nullptr;
+    first->next = nullptr;
     trash = new Element;
     trash->data = "";
-    trash-> next = nullptr;
+    trash->next = nullptr;
 }
-bool isEmpty() {
-    return first->next == nullptr;
+bool isEmpty() {//проверка на пустоту если заголовок указывает на nullptr
+    return (first->next == nullptr);
 }
 Element* findPrev(string find) {// возвращает ссылку на предыдущую ячейку который указывает на ячейку с даннымим(find) если не находит возвращает null
     Element *f = first;
     do {
-        if(f->next->data==find) {
+        if((f->next)->data==find) {
             break;//выходим если нашли
         }
         f = f->next;
@@ -74,15 +74,16 @@ void del(string find) {
     }
     Element *prev = findPrev(find);// находим предыдущий элемент
     Element *del = prev->next; // сохраняем удаляемый
-    prev->next = del->next;
-    del->next = nullptr;
+    prev->next = del->next;// соединяем предыдущий со следующим элементом
+    del->next = nullptr;// обнуляем следующий указатель у удаляемого
     Element* f = trash;
-    while(f->next!= nullptr){
+    while(f->next!= nullptr){//ищем последний элемент в корзине
         f = f->next;
     }
-    f->next = del;
+    f->next = del;//добовляем удаляемый элемент в конец корзины
 }
 void showList() {
+    if(isEmpty()) return;
     Element *f = first->next;
     do {
         cout << f->data;

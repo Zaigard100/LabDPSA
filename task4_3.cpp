@@ -383,7 +383,7 @@ bool dialog() {
             return false;
         }
         default:{
-            cout << "Вdедена не верная команда" << endl;
+            cout << "Введена не верная команда" << endl;
             return true;
         }
     }
