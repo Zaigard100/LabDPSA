@@ -55,8 +55,8 @@ build CMakeFiles/LabDPSA.dir/main.cpp.obj: CXX_COMPILER__LabDPSA_unscanned_Debug
   OBJECT_DIR = CMakeFiles\LabDPSA.dir
   OBJECT_FILE_DIR = CMakeFiles\LabDPSA.dir
 
-build CMakeFiles/LabDPSA.dir/task4_3.cpp.obj: CXX_COMPILER__LabDPSA_unscanned_Debug C$:/Users/zaiga/IdeaProjects/LabDPSA/task4_3.cpp || cmake_object_order_depends_target_LabDPSA
-  DEP_FILE = CMakeFiles\LabDPSA.dir\task4_3.cpp.obj.d
+build CMakeFiles/LabDPSA.dir/task5_1.cpp.obj: CXX_COMPILER__LabDPSA_unscanned_Debug C$:/Users/zaiga/IdeaProjects/LabDPSA/task5_1.cpp || cmake_object_order_depends_target_LabDPSA
+  DEP_FILE = CMakeFiles\LabDPSA.dir\task5_1.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\LabDPSA.dir
   OBJECT_FILE_DIR = CMakeFiles\LabDPSA.dir
@@ -69,7 +69,7 @@ build CMakeFiles/LabDPSA.dir/task4_3.cpp.obj: CXX_COMPILER__LabDPSA_unscanned_De
 #############################################
 # Link the executable LabDPSA.exe
 
-build LabDPSA.exe: CXX_EXECUTABLE_LINKER__LabDPSA_Debug CMakeFiles/LabDPSA.dir/main.cpp.obj CMakeFiles/LabDPSA.dir/task4_3.cpp.obj
+build LabDPSA.exe: CXX_EXECUTABLE_LINKER__LabDPSA_Debug CMakeFiles/LabDPSA.dir/main.cpp.obj CMakeFiles/LabDPSA.dir/task5_1.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LabDPSA.dir
