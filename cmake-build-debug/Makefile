@@ -152,29 +152,53 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-task4_3.obj: task4_3.cpp.obj
-.PHONY : task4_3.obj
+task5_1.obj: task5_1.cpp.obj
+.PHONY : task5_1.obj
 
 # target to build an object file
-task4_3.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_3.cpp.obj
-.PHONY : task4_3.cpp.obj
+task5_1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task5_1.cpp.obj
+.PHONY : task5_1.cpp.obj
 
-task4_3.i: task4_3.cpp.i
-.PHONY : task4_3.i
+task5_1.i: task5_1.cpp.i
+.PHONY : task5_1.i
 
 # target to preprocess a source file
-task4_3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_3.cpp.i
-.PHONY : task4_3.cpp.i
+task5_1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task5_1.cpp.i
+.PHONY : task5_1.cpp.i
 
-task4_3.s: task4_3.cpp.s
-.PHONY : task4_3.s
+task5_1.s: task5_1.cpp.s
+.PHONY : task5_1.s
 
 # target to generate assembly for a file
-task4_3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task4_3.cpp.s
-.PHONY : task4_3.cpp.s
+task5_1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task5_1.cpp.s
+.PHONY : task5_1.cpp.s
+
+task5_2.obj: task5_2.cpp.obj
+.PHONY : task5_2.obj
+
+# target to build an object file
+task5_2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task5_2.cpp.obj
+.PHONY : task5_2.cpp.obj
+
+task5_2.i: task5_2.cpp.i
+.PHONY : task5_2.i
+
+# target to preprocess a source file
+task5_2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task5_2.cpp.i
+.PHONY : task5_2.cpp.i
+
+task5_2.s: task5_2.cpp.s
+.PHONY : task5_2.s
+
+# target to generate assembly for a file
+task5_2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LabDPSA.dir\build.make CMakeFiles/LabDPSA.dir/task5_2.cpp.s
+.PHONY : task5_2.cpp.s
 
 # Help Target
 help:
@@ -188,9 +212,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... task4_3.obj
-	@echo ... task4_3.i
-	@echo ... task4_3.s
+	@echo ... task5_1.obj
+	@echo ... task5_1.i
+	@echo ... task5_1.s
+	@echo ... task5_2.obj
+	@echo ... task5_2.i
+	@echo ... task5_2.s
 .PHONY : help
 
 
