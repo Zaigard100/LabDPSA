@@ -135,6 +135,7 @@ void dialog(){
 }
 
 void task5_2(){
+    tree = new TreeNode;
     SetConsoleOutputCP(CP_UTF8);
     while(true) dialog();
 }
