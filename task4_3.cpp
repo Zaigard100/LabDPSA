@@ -10,14 +10,15 @@ using std::endl;
 
 struct List{
     string data;
-    List* next;
-    List* prev;
+    List* next = nullptr;
+    List* prev = nullptr;
 };
 
 struct subList{
-    List *list;
-    subList *next;
-    subList *prev;
+    string data;
+    List *list = nullptr;
+    subList *next = nullptr;
+    subList *prev = nullptr;
 };
 
 subList *listOfList;
@@ -31,14 +32,14 @@ void init(){
 bool isListOfListEmpty(){
     return (listOfList->next == nullptr);
 }
-bool isListEmpty(List *list){
-    return list->next == nullptr;
+bool isListEmpty(subList *l){
+    return l->list == nullptr;
 }
 subList *findList(string name){
     if(isListOfListEmpty()) return nullptr;
     subList * l = listOfList->next;
     while(l != nullptr){
-        if(l->list->data == name) return l;
+        if(l->data == name) return l;
         l = l->next;
     }
     return nullptr;
@@ -54,10 +55,7 @@ List *findEl(string data,subList *l){
 void addList(string name,string find,bool prev){
     //создаем пустой лист
     subList *newList = new subList;
-    newList->list = new List;
-    newList->list->next = nullptr;
-    newList->list->prev = nullptr;
-    newList->list->data = name;
+    newList->data = name;
     //находим место куда вставить новый лист
     if(isListOfListEmpty()){
         listOfList->next = newList;
@@ -83,10 +81,9 @@ void add(string data,string find,string name, bool prev){
         return;
     }
     //поиск элемента(место куда вставить новый элемент)
-    if(isListEmpty(l->list)){
-        newEl->prev = l->list;
-        newEl->next = nullptr;
-        newEl->prev->next = newEl;
+    if(isListEmpty(l)){
+        l->list = new List;
+        l->list->data = data;
         return;
     }
     List *f = findEl(find,l);
@@ -94,7 +91,16 @@ void add(string data,string find,string name, bool prev){
         cout << "Элемент с такими данными не найден"<<endl;
         return;
     }
-    if(prev)f = f->prev;
+    if(prev){
+        if(f->prev== nullptr){
+            newEl->next = f;
+            l->list = newEl;
+            f->prev = newEl;
+            return;
+        }
+        f = f->prev;
+
+    }
     //вставка элемента
     newEl->prev = f;
     newEl->next = f->next;
@@ -114,7 +120,11 @@ void deleteEl(string el,string name){
         return;
     }
     //поиск удоляемого элемента
-    if(isListEmpty(l->list)){
+    if(isListEmpty(l)){
+        return;
+    }
+    if(l->list->data == el && l->list->next == nullptr){
+        l->list = nullptr;
         return;
     }
     List *f = findEl(el,l);
@@ -140,7 +150,7 @@ void deleteList(string name){
         return;
     }
     //если лист пуст удаляем только лист
-    if(isListEmpty(l->list)){
+    if(isListEmpty(l)){
         delete l->list;
         l->prev->next = l->next;
         if(l->next!= nullptr) l->next->prev = l->prev;
@@ -179,13 +189,13 @@ void findInAllList(string data){
     }
 }
 
-void showList(List* l){
+void showList(subList* l){
     cout<<"("<<l->data<<") - ";
     if(isListEmpty(l)){
         cout<<"(empty)"<<endl;
         return;
     }
-    List * el = l->next;
+    List * el = l->list;
     while (el != nullptr){
         cout<<el->data;
         if(el->next != nullptr) cout<<" - ";
@@ -202,7 +212,7 @@ void showAllList(){
     subList *l = listOfList->next;
     while(l!= nullptr){
         cout<<"|"<<endl;
-        showList(l->list);
+        showList(l);
         l = l->next;
     }
 }
@@ -265,8 +275,8 @@ bool dialog() {
             }
             cout << "Введите данные:" << endl;
             string data = read_line();
-            if (isListEmpty(l->list)) {
-                add(data, l->list->data, name, true);
+            if (isListEmpty(l)) {
+                add(data, l->data, name, true);
                 return true;
             }
             cout << "Введите элемент после/перед которого хотите добавить данные:" << endl;
@@ -285,10 +295,12 @@ bool dialog() {
                     case 1: {
                         add(data, find, name, true);
                         run = false;
+                        break;
                     }
                     case 2: {
                         add(data, find, name, true);
                         run = false;
+                        break;
                     }
                 }
                 return true;
@@ -375,7 +387,7 @@ bool dialog() {
                 cout << "Лист с таким именем не найден" << endl;
                 return true;
             }
-            showList(l->list);
+            showList(l);
             return true;
         }
         case 9:{

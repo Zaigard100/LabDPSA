@@ -52,7 +52,7 @@ void add(string find,string data,bool prev){
 void del(string find){
     List *f = findEl(find, false);
     f->prev->next = f->next;
-    f->next->prev = f->prev;//пиздец
+    f->next->prev = f->prev;//
     delete f;
 }
 
