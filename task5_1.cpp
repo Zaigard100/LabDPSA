@@ -20,8 +20,7 @@ TreeNode *tree;
 void createTree(TreeNode *tr,int c){
     tr->data = rand() % 99;
     c--;
-    if (c / 2 + c % 2 > 0)
-    {
+    if (c / 2 + c % 2 > 0){
         tr->left = new TreeNode;
         createTree(tr->left, c / 2 + c % 2);
     }
@@ -55,10 +54,10 @@ void symmetricShow(TreeNode *temp,int lvl = 0){
 }
 
 void reverseSymmetricShow(TreeNode *temp,int lvl = 0){
-    if(temp->right != nullptr) symmetricShow(temp->right,lvl+1);
+    if(temp->right != nullptr) reverseSymmetricShow(temp->right,lvl+1);
     for(int i = 0; i < lvl;i++) cout<<"     ";
     cout<<temp->data<<endl;
-    if(temp->left != nullptr) symmetricShow(temp->left,lvl+1);
+    if(temp->left != nullptr) reverseSymmetricShow(temp->left,lvl+1);
 }
 
 void dialog(){
@@ -78,7 +77,6 @@ void dialog(){
             }
             tree = new TreeNode;
             createTree(tree, read_uint());
-            have = true;
             break;
         }
         case 2: {

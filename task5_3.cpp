@@ -29,6 +29,7 @@ void createTree(TreeNode *tr,int count){
         tr->right = new TreeNode;
         createTree(tr->right, count / 2);
     }
+
 }
 
 TreeNode* find(TreeNode* tr,int find) {
@@ -92,7 +93,8 @@ bool dialog() {
                 deleteTree(tree);
                 tree = nullptr;
             }
-            cout<<"Введите кол-во элелементов"<<endl;
+            cout<<"Введите кол-во элелементов: "<<endl;
+            tree = new TreeNode;
             createTree(tree,read_uint());
             return true;
         }
