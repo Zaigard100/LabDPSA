@@ -180,7 +180,7 @@ bool dialog() {
 
 }
 
-void task2_5() {
+void task3_5() {
     SetConsoleOutputCP(CP_UTF8);
     init();
     while(dialog());
