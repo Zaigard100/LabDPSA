@@ -107,6 +107,7 @@ void dialog(){
                 deleteTree(tree);
                 tree = nullptr;
             }
+            tree = new TreeNode;
             createTree(tree, read_uint());
             break;
         }

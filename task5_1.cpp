@@ -76,6 +76,7 @@ void dialog(){
                 del(tree);
                 tree = nullptr;
             }
+            tree = new TreeNode;
             createTree(tree, read_uint());
             have = true;
             break;
