@@ -21,7 +21,6 @@ struct TreeStack{
 };
 TreeNode* tree = nullptr;
 TreeStack* sp = nullptr;
-bool have = false;
 
 void createTree(TreeNode *tr,int count){
     tr->data = rand() % 99;
@@ -104,26 +103,33 @@ void dialog(){
 
     switch (read_uint()) {
         case 1: {
-            if (have) deleteTree(tree);
+            if(tree!=nullptr) {
+                deleteTree(tree);
+                tree = nullptr;
+            }
             createTree(tree, read_uint());
-            have = true;
             break;
         }
         case 2: {
-            if (have) deleteTree(tree);
-            have = false;
+            if(tree!=nullptr) {
+                deleteTree(tree);
+                tree = nullptr;
+            }
             break;
         }
         case 3: {
-            if (have) symmetricShow(tree);
+            if ( tree != nullptr) symmetricShow(tree);
             break;
         }
         case 4: {
-            if (have) noRecursionSymmetricShow(tree);
+            if ( tree != nullptr) noRecursionSymmetricShow(tree);
             break;
         }
         case 9: {
-            if (have) deleteTree(tree);
+            if(tree!=nullptr) {
+                deleteTree(tree);
+                tree = nullptr;
+            }
             exit(0);
             break;
         }

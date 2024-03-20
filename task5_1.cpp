@@ -14,7 +14,6 @@ struct TreeNode{
     int data;
 };
 
-bool have = false;
 TreeNode *tree;
 
 
@@ -73,30 +72,38 @@ void dialog(){
 
     switch (read_uint()) {
         case 1: {
-            if (have) del(tree);
+            if (tree != nullptr){
+                del(tree);
+                tree = nullptr;
+            }
             createTree(tree, read_uint());
             have = true;
             break;
         }
         case 2: {
-            if (have) del(tree);
-            have = false;
+            if (tree != nullptr){
+                del(tree);
+                tree = nullptr;
+            }
             break;
         }
         case 3: {
-            if (have) rightOrderTreeShow(tree);
+            if ( tree != nullptr) rightOrderTreeShow(tree);
             break;
         }
         case 4: {
-            if (have) symmetricShow(tree);
+            if ( tree != nullptr) symmetricShow(tree);
             break;
         }
         case 5: {
-            if (have) reverseSymmetricShow(tree);
+            if ( tree != nullptr) reverseSymmetricShow(tree);
             break;
         }
         case 9: {
-            if (have) del(tree);
+            if (tree != nullptr){
+                del(tree);
+                tree = nullptr;
+            }
             exit(0);
             break;
         }
