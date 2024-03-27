@@ -8,8 +8,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-struct TreeNode
-{
+struct TreeNode{
     TreeNode* left = nullptr;
     TreeNode* right = nullptr;
     int data = -1;
@@ -18,14 +17,14 @@ struct TreeNode
 
 TreeNode* treeHead = nullptr;
 
-TreeNode* find(TreeNode* tr,int find) {
-    if(tr->data == find) return tr;
+TreeNode* find(TreeNode* tr,int f) {
+    if(tr->data == f) return tr;
     if (tr->left != nullptr) {
-        TreeNode* l = find(tr->left, find);
+        TreeNode* l = find(tr->left, f);
         if(l != nullptr) return l;
     }
     if (tr->right != nullptr) {
-        TreeNode* r = find(tr->right, find);
+        TreeNode* r = find(tr->right, f);
         if(r != nullptr) return r;
     }
     return nullptr;
@@ -76,8 +75,22 @@ void deleteTree(TreeNode *temp){
     delete temp;
 }
 
-void deleteNode(TreeNode* tree, int del){
+void reverseSymmetricShow(TreeNode *temp,int lvl = 0){
+    if(temp->right != nullptr) reverseSymmetricShow(temp->right,lvl+1);
+    for(int i = 0; i < lvl;i++) cout<<"     ";
+    cout<<temp->data<<endl;
+    if(temp->left != nullptr) reverseSymmetricShow(temp->left,lvl+1);
+}
 
+void showInLine(TreeNode* tree){
+    if (tree->left != nullptr)
+        showInLine(tree->left);
+    cout << tree->data << "(" << tree->count << ") ";
+    if (tree->right != nullptr)
+        showInLine(tree->right);
+}
+
+void deleteNode(TreeNode* tree, int del) {
     TreeNode* t = tree;
     TreeNode* t_from = nullptr;
     while (t->data != del)
@@ -129,46 +142,76 @@ void deleteNode(TreeNode* tree, int del){
             tt_from->left = tt->right;
         delete tt;
     }
+}
 
-
-bool dialog() {
+bool dialog(){
     cout <<"1.Создать дерево" << endl;
     cout <<"2.Добавить вершину" << endl;
     cout <<"3.Поиск" << endl;
-    cout <<"4.Показать" << endl;
-    cout <<"5.Вывод всех вершин в одну строку по порядку" << endl;
+    cout <<"4.Показать дерево" << endl;
+    cout <<"5.Показать вершины в одну строку по порядку" << endl;
     cout <<"6.Удалить вершину" << endl;
     cout <<"9.Выход" << endl;
+    cout <<"Введите комманду: ";
 
     switch (read_uint()) {
         case 1: {
-
-            break;
+            cout <<"Введите кол-во элементов: ";
+            createTree(read_uint());
+            return true;
         }
         case 2: {
-
-            break;
+            cout <<"Добавить" << endl;
+            cout <<"Введите элемент: ";
+            add(treeHead,read_int());
+            return true;
         }
         case 3: {
-
-            break;
+            cout <<"Поиск" << endl;
+            cout <<"Введите элемент: ";
+            TreeNode* f = find(treeHead,read_int());
+            if(f == nullptr) {
+                cout <<"Элемент не найден" << endl;
+            }else {
+                cout <<"Элемент "<< f->data <<" найден в кол-во " << f->count << endl;
+            }
+            return true;
         }
         case 4: {
-
-            break;
+            reverseSymmetricShow(treeHead);
+            return true;
         }
         case 5: {
-
-            break;
+            showInLine(treeHead);
+            cout << endl;
+            return true;
         }
         case 6: {
-
-            break;
+            cout <<"Удалить" << endl;
+            cout <<"Введите элемент: ";
+            int d = read_int();
+            if(find(treeHead,d) != nullptr) {
+                deleteNode(treeHead,d);
+            }else {
+                cout <<"Элемент не найден" << endl;
+            }
+            return true;
         }
         case 9: {
-
-            break;
+            cout << "Выход" << endl;
+            return false;
+        }
+        default: {
+            cout<<"Не валидная команда..."<<endl;
+            return true;
         }
     }
 
+}
+
+void task6(){
+    treeHead = new TreeNode;
+    srand(static_cast<unsigned int>(time(0)));
+    SetConsoleOutputCP(CP_UTF8);
+    while(true) dialog();
 }
