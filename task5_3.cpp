@@ -46,6 +46,7 @@ TreeNode* find(TreeNode* tr,int f) {
 }
 
 bool add(TreeNode* tr,TreeNode* f,int data) {
+
     if(f==nullptr){
         cout<<"Элемент не найден"<<endl;
         return false;
@@ -126,6 +127,13 @@ bool dialog() {
             return true;
         }
         case 2: {
+            if(tree == nullptr){
+                cout<<"Введите добовляемые элелементы: "<<endl;
+                int d = read_uint();
+                tree = new TreeNode;
+                tree->data = d;
+                return true;
+            }
             cout<<"Введите искомый элелемент: "<<endl;
             int f = read_uint();
             TreeNode* ff = find(tree,f);
@@ -174,7 +182,7 @@ bool dialog() {
 }
 
 void task5_3(){
-    tree = new TreeNode;
+    //tree = new TreeNode;
     srand(static_cast<unsigned int>(time(0)));
     SetConsoleOutputCP(CP_UTF8);
     while(true) dialog();
