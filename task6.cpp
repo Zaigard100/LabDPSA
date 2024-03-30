@@ -1,12 +1,24 @@
 #include <iostream>
 #include <string>
-#include <windows.h>
 #include "dataio.h"
+#include <vector>
+#include <memory>
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <locale.h>
+#endif
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+
+#define LN { std::cout << __LINE__ << std::endl; }
+#define DEB(x) { std::cout << #x << "=(" << (x) << ") "; }
+
+static std::string ch_hor = "\u2500" /*─*/, ch_ver = "\u2502" /*│*/, ch_ddia = "\u250C" /*┌*/, ch_rddia = "\u2510" /*┐*/, ch_udia = "\u2514" /*└*/, ch_ver_hor = "\u251C\u2500" /*├─*/, ch_udia_hor = "\u2514\u2500" /*└─*/, ch_ddia_hor = "\u250C\u2500" /*┌─*/, ch_ver_spa = "\u2502 " /*│ */;
+
 
 struct TreeNode{
     TreeNode* left = nullptr;
@@ -144,6 +156,15 @@ void deleteNode(TreeNode* tree, int del) {
     }
 }
 
+void dump2(TreeNode const * node, std::string const & rpref = "", std::string const & cpref = "", std::string const & lpref = "") {
+    if (!node) return;
+    if (node->right)
+        dump2(node->right, rpref + "  ", rpref + ch_ddia_hor, rpref + ch_ver_spa);
+    std::cout << cpref << std::to_string(node->data) << std::endl;
+    if (node->left)
+        dump2(node->left, lpref + ch_ver_spa, lpref + ch_udia_hor, lpref + "  ");
+}
+
 bool dialog(){
     cout <<"1.Создать дерево" << endl;
     cout <<"2.Добавить вершину" << endl;
@@ -151,22 +172,26 @@ bool dialog(){
     cout <<"4.Показать дерево" << endl;
     cout <<"5.Показать вершины в одну строку по порядку" << endl;
     cout <<"6.Удалить вершину" << endl;
+    cout <<"7.Показать вершины, но красиво" << endl;
     cout <<"9.Выход" << endl;
     cout <<"Введите комманду: ";
 
     switch (read_uint()) {
         case 1: {
+            cout << endl;
             cout <<"Введите кол-во элементов: ";
             createTree(read_uint());
             return true;
         }
         case 2: {
+            cout << endl;
             cout <<"Добавить" << endl;
             cout <<"Введите элемент: ";
             add(treeHead,read_int());
             return true;
         }
         case 3: {
+            cout << endl;
             cout <<"Поиск" << endl;
             cout <<"Введите элемент: ";
             TreeNode* f = find(treeHead,read_int());
@@ -178,15 +203,18 @@ bool dialog(){
             return true;
         }
         case 4: {
+            cout << endl;
             reverseSymmetricShow(treeHead);
             return true;
         }
         case 5: {
+            cout << endl;
             showInLine(treeHead);
             cout << endl;
             return true;
         }
         case 6: {
+            cout << endl;
             cout <<"Удалить" << endl;
             cout <<"Введите элемент: ";
             int d = read_int();
@@ -195,6 +223,12 @@ bool dialog(){
             }else {
                 cout <<"Элемент не найден" << endl;
             }
+            return true;
+        }
+        case 7: {
+            cout << endl;
+            dump2(treeHead);
+            cout << endl;
             return true;
         }
         case 9: {
