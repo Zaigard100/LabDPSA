@@ -33,6 +33,12 @@ void show_copy(){
     for(int  i = 0; i<count;i++) cout<<copy_arr[i]<<" ";
     cout<<endl;
 }
+void swap(int i,int j){
+    if(i == j) return;
+    int temp = copy_arr[i];
+    copy_arr[i] = copy_arr[j];
+    copy_arr[j] = temp;
+}
 void bubble(){
     copy();
     int com = 0;
@@ -93,12 +99,98 @@ void choise(){
     cout<< "Перестановок: "<<per<<endl;
     cout<< "Сравнений: "<<com<<endl;
 }
+
+void shell(){
+    copy();
+    int com = 0;
+    int per = 0;
+    for(int s = count/2;s>0;s/=2){
+        for(int i = s;i<count;++i){
+            for(int j = i - s; j >= 0 && copy_arr[j] > copy_arr[j+s];j -= s,com++){
+                int temp = copy_arr[j];
+                copy_arr[j] = copy_arr[j+s];
+                copy_arr[j+s] = temp;
+                per++;
+            }
+        }
+    }
+    show_copy();
+    cout<< "Перестановок: "<<per<<endl;
+    cout<< "Сравнений: "<<com<<endl;
+}
+int com_q = 0,per_q;
+void quickSort(int left=0, int right=count-1)
+{
+    int i = left;
+    int j = right;
+    int middle = copy_arr[(left + right) / 2];
+    while (i <= j)
+    {
+        while (++com_q && copy_arr[i] < middle) i++;
+        while (++com_q && copy_arr[j] > middle) j--;
+        if (i <= j)
+        {
+            int temp = copy_arr[i];
+            copy_arr[i] = copy_arr[j];
+            copy_arr[j] = temp;
+            i++;
+            j--;
+            per_q++;
+        }
+    }
+    if (left < j)
+        quickSort(left, j);
+    if (i < right)
+        quickSort(i, right);
+}
+
+void s(int k, int n){
+    while (true)
+    {
+        int left = 2 * k + 1;
+        int right = 2 * k + 2;
+        int largest;
+        if (left < n && copy_arr[left] > copy_arr[k])
+            largest = left;
+        else
+            largest = k;
+        com_q++;
+
+        if (right < n && copy_arr[right] > copy_arr[largest]) largest = right;
+        com_q++;
+
+        if (largest == k) break;
+
+        int temp = copy_arr[k];
+        copy_arr[k] = copy_arr[largest];
+        copy_arr[largest] = temp;
+        per_q++;
+        k = largest;
+    }
+}
+
+void pyramida(){
+    for (int i = (count - 1) / 2; i >= 0; i--)
+        s(i, count);
+    for (int i = count - 1; i >= 1; i--)
+    {
+        int temp = copy_arr[0];
+        copy_arr[0] = copy_arr[i];
+        copy_arr[i] = temp;
+        per_q++;
+        s(0, i);
+    }
+}
+
 bool dialog() {
     cout << "\n1.Создать массив." << endl;
     cout << "2.Вывести массив." << endl;
     cout << "3.Сортировать пузырьком вывести." << endl;
     cout << "4.Сортировать выбором вывести" << endl;
     cout << "5.Сортировать вставками вывести." << endl;
+    cout << "6.Сортировать методом Шела вывести." << endl;
+    cout << "7.Сортировать быстро вывести." << endl;
+    cout << "7.Сортировать пирамидой вывести." << endl;
     cout << "9.Завершить работу программы." << endl;
     cout << "Введите команду: ";
 
@@ -125,6 +217,30 @@ bool dialog() {
             insert();
             return true;
         }
+        case 6:{
+            shell();
+            return true;
+        }
+        case 7:{
+            copy();
+            com_q = 0;
+            per_q = 0;
+            quickSort();
+            show_copy();
+            cout<< "Перестановок: "<<per_q<<endl;
+            cout<< "Сравнений: "<<com_q<<endl;
+            return true;
+        }
+        case 8:{
+            copy();
+            com_q = 0;
+            per_q = 0;
+            pyramida();
+            show_copy();
+            cout<< "Перестановок: "<<per_q<<endl;
+            cout<< "Сравнений: "<<com_q<<endl;
+            return true;
+        }
         case 9:{
             if(arr!= nullptr) delete arr;
             if(copy_arr!= nullptr) delete copy_arr;
@@ -132,6 +248,8 @@ bool dialog() {
         }
     }
 }
+
+
 
 void task8() {
     srand(static_cast<unsigned int>(time(0)));
