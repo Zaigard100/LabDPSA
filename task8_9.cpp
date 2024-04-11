@@ -64,6 +64,7 @@ void insert(){
     int per = 0;
     for(int i = 1;i<count;i++){
         int temp = copy_arr[i];
+        per++;
         int j = i-1;
         while (com++ && j>=0 && temp < copy_arr[j]){
 
@@ -75,7 +76,7 @@ void insert(){
         per++;
     }
     show_copy();
-    cout<< "Перестановок: "<<per<<endl;
+    cout<< "Перестановок: "<<per/3<<endl;
     cout<< "Сравнений: "<<com<<endl;
 }
 void choise(){
@@ -100,18 +101,27 @@ void choise(){
     cout<< "Сравнений: "<<com<<endl;
 }
 
-void shell(){
+void shell(int *steps,int steps_count){
     copy();
     int com = 0;
     int per = 0;
-    for(int s = count/2;s>0;s/=2){
-        for(int i = s;i<count;++i){
-            for(int j = i - s; j >= 0 && copy_arr[j] > copy_arr[j+s];j -= s,com++){
-                int temp = copy_arr[j];
-                copy_arr[j] = copy_arr[j+s];
-                copy_arr[j+s] = temp;
-                per++;
+    int perestanov = 0;
+    for (int m = 0; m < steps_count; m++)
+    {
+        int k = steps[m];
+        for (int i = k; i < count; i++)
+        {
+            int temp = copy_arr[i];
+            perestanov++;
+            int j = i - k;
+            while (com++ && j >= 0 && temp < copy_arr[j])
+            {
+                copy_arr[j + k] = copy_arr[j];
+                j = j - k;
+                perestanov++;
             }
+            copy_arr[j + k] = temp;
+            per++;
         }
     }
     show_copy();
@@ -218,7 +228,11 @@ bool dialog() {
             return true;
         }
         case 6:{
-            shell();
+            cout << "Введите кол-во шагов: " << endl;
+            int step_c = read_uint();
+            cout << "Введите шаги: " << endl;
+            int* st = read_arr(step_c);
+            shell(st,step_c);
             return true;
         }
         case 7:{
@@ -251,7 +265,7 @@ bool dialog() {
 
 
 
-void task8() {
+void task8_9() {
     srand(static_cast<unsigned int>(time(0)));
     SetConsoleOutputCP(CP_UTF8);
     while(dialog());

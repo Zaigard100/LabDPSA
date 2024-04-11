@@ -65,6 +65,34 @@ void add(TreeNode* tree, int data){
         }
     }
 }
+void addNR(TreeNode* tree, int data) {
+    TreeNode* t = tree;
+    while (true) {
+        if (t->data == data) {
+            t->count++;
+            return;
+        }
+        if (t->data > data){
+            if (t->left == nullptr) {
+                t->left = new TreeNode;
+                t->left->data = data;
+                return;
+            }else {
+                t = t->left;
+            }
+        }else {
+            if (t->right == nullptr)
+            {
+                t->right = new TreeNode;
+                t->right->data = data;
+                return;
+            }
+            else{
+                t = t->right;
+            }
+        }
+    }
+}
 
 void createTree(int count){
     treeHead = new TreeNode;
