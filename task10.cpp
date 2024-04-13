@@ -16,7 +16,7 @@ void create(int c){
     if(arr!= nullptr) delete arr;
     arr = new int[c];
     count = c;
-    for(int  i = 0; i<c;i++) arr[i] = rand()%1000;
+    for(int  i = 0; i<c;i++) arr[i] = rand()%c;
 }
 void createNo2(int c){
     if(arr!= nullptr) delete arr;
@@ -84,7 +84,7 @@ void bucketNoAddArr(){
 struct List
 {
     int data;
-    List* next;
+    List* next = nullptr;
 };
 
 void add(List* plist, int inf)
@@ -144,7 +144,7 @@ void radix()
     List* sort = new List[10];
     int k = count - 1;
     int i = 0;
-    int moves = 0;
+    int permutation = 0;
     while (k >= 1)
     {
         i++;
@@ -156,9 +156,9 @@ void radix()
             int div = 1;
             for (int l = 0; l < i; l++, div *= 10);
             add(&sort[((copy_arr[j] % div) * 10) / div], copy_arr[j]);
-            moves++;
+            permutation++;
         }
-        for (int j = 0, l = 0; l < count; j++)
+        for (int j = 0, l = 0; l < count; j++) //из sort в array
         {
             List* temp = sort[j].next;
             while (temp != nullptr)
@@ -166,14 +166,14 @@ void radix()
                 copy_arr[l] = temp->data;
                 temp = temp->next;
                 l++;
-                moves++;
+                permutation++;
             }
         }
         for (int j = 0; j < 10; j++)
             clear(sort[j].next);
     }
-    show(copy_arr, count);
-    cout << "Количество пересылок: " << moves << endl;
+    show(copy_arr,count);
+    std::cout << "Количество перестановок: " << permutation << std::endl;
     delete[] sort;
 }
 
