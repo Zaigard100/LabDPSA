@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(LabDPSA main.cpp
         dataio.h
-        task10.cpp
-        task10.h)
+        task8_9.cpp
+        task8_9.h)

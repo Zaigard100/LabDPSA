@@ -33,12 +33,6 @@ void show_copy(){
     for(int  i = 0; i<count;i++) cout<<copy_arr[i]<<" ";
     cout<<endl;
 }
-void swap(int i,int j){
-    if(i == j) return;
-    int temp = copy_arr[i];
-    copy_arr[i] = copy_arr[j];
-    copy_arr[j] = temp;
-}
 void bubble(){
     copy();
     int com = 0;
@@ -128,7 +122,7 @@ void shell(int *steps,int steps_count){
     cout<< "Перестановок: "<<per<<endl;
     cout<< "Сравнений: "<<com<<endl;
 }
-int com_q = 0,per_q;
+int com_q,per_q;
 void quickSort(int left=0, int right=count-1)
 {
     int i = left;
