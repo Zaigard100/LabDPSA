@@ -1,6 +1,6 @@
-#include "task11_2.h"
+#include "task11_3.h"
 
 int main()
 {
-    task11_2();
+    task11_3();
 }
