@@ -68,7 +68,7 @@ int find(string key)
 {
     int hash = getHash(key);
     if (++com && table[hash].key == key)
-        return 1;
+        return hash;
     else
     {
         sList* tmp = table[hash].head->next;
@@ -76,7 +76,7 @@ int find(string key)
         {
             if (tmp->key == key)
             {
-                return 1;
+                return hash;
             }
             tmp = tmp->next;
         }
